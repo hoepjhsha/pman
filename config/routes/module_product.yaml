@@ -1,0 +1,5 @@
+module_product:
+    resource: ../../src/Product/Infrastructure/Adapters/Http/Controllers/
+    type: attribute
+    prefix: /api
+    name_prefix: api-

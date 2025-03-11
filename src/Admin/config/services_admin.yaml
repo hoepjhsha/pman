@@ -1,0 +1,12 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Product:
+        resource: '../src/Admin'
+        exclude:
+            - '../src/Admin/Infrastructure/Entities'
+            - '../src/Admin/Domain/Entities'

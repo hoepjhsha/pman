@@ -1,0 +1,4 @@
+module_admin:
+    resource: ../../src/Admin/Infrastructure/Adapters/Http/Controllers/
+    type: attribute
+    prefix: /
