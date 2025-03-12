@@ -1,0 +1,31 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Product:
+        resource: '../'
+        exclude:
+            - '../{DataTransferObjects,Entities,Migrations,Tests,Kernel.php}'
+
+    App\Product\Infrastructure\Adapters\Persistence\Repositories\CategoryRepository:
+        arguments: [ '@doctrine.orm.product_entity_manager' ]
+
+    App\Product\Infrastructure\Adapters\Persistence\Repositories\ProductRepository:
+        arguments: [ '@doctrine.orm.product_entity_manager' ]
+
+    App\Product\Domain\Repositories\CategoryRepositoryInterface: '@App\Product\Infrastructure\Adapters\Persistence\Repositories\CategoryRepository'
+    App\Product\Domain\Repositories\ProductRepositoryInterface: '@App\Product\Infrastructure\Adapters\Persistence\Repositories\ProductRepository'
+
+    App\Product\Domain\Services\Category\GetAllCategoriesServiceInterface: '@App\Product\Application\Services\Category\GetAllCategoriesService'
+    App\Product\Domain\Services\Category\GetCategoryServiceInterface: '@App\Product\Application\Services\Category\GetCategoryService'
+    App\Product\Domain\Services\Category\CreateOrUpdateCategoryServiceInterface: '@App\Product\Application\Services\Category\CreateOrUpdateCategoryService'
+    App\Product\Domain\Services\Category\DeleteCategoryServiceInterface: '@App\Product\Application\Services\Category\DeleteCategoryService'
+    App\Product\Domain\Services\Category\GetProductsByCategoryServiceInterface: '@App\Product\Application\Services\Category\GetProductsByCategoryService'
+
+    App\Product\Domain\Services\Product\GetAllProductsServiceInterface: '@App\Product\Application\Services\Product\GetAllProductsService'
+    App\Product\Domain\Services\Product\GetProductServiceInterface: '@App\Product\Application\Services\Product\GetProductService'
+    App\Product\Domain\Services\Product\CreateOrUpdateProductServiceInterface: '@App\Product\Application\Services\Product\CreateOrUpdateProductService'
+    App\Product\Domain\Services\Product\DeleteProductServiceInterface: '@App\Product\Application\Services\Product\DeleteProductService'

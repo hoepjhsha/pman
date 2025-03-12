@@ -1,8 +1,8 @@
 doctrine:
     dbal:
-        default_connection: default
+        #        default_connection: admin
         connections:
-            default:
+            admin:
                 url: '%env(resolve:DATABASE_URL_ADMIN)%'
                 server_version: '9.1.0'
             product:
@@ -12,16 +12,16 @@ doctrine:
         auto_generate_proxy_classes: true
         proxy_dir: '%kernel.cache_dir%/doctrine/orm/Proxies'
         proxy_namespace: Proxies
-        default_entity_manager: default
+        default_entity_manager: admin
         entity_managers:
-            default:
-                connection: default
+            admin:
+                connection: admin
                 mappings:
                     App\Admin\Infrastructure\Adapters\Persistence\Doctrine\Entities:
                         type: attribute
                         dir: '%kernel.project_dir%/src/Admin/Infrastructure/Adapters/Persistence/Doctrine/Entities'
                         prefix: 'App\Admin\Infrastructure\Adapters\Persistence\Doctrine\Entities'
-                        alias: Default
+                        alias: Admin
             product:
                 connection: product
                 mappings:

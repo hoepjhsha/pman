@@ -1,0 +1,11 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Admin\:
+        resource: '../'
+        exclude:
+            - '../{DataTransferObjects,Entities,Migrations,Tests,Kernel.php}'
