@@ -97,7 +97,9 @@
     }
   },
   "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.71",
     "phpunit/phpunit": "^9.5",
+    "roave/security-advisories": "dev-latest",
     "symfony/browser-kit": "7.2.*",
     "symfony/css-selector": "7.2.*",
     "symfony/debug-bundle": "7.2.*",
