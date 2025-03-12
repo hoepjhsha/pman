@@ -1,19 +1,21 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 8:12 AM
  */
 
 namespace App\Product\Domain\Entities;
 
-use DateTimeImmutable;
-
 class CategoryEntity
 {
-
     private int $id;
 
     private ?int $parentId;
@@ -22,12 +24,6 @@ class CategoryEntity
 
     private ?string $description;
 
-    /**
-     * @param  int  $id
-     * @param  int|null  $parentId
-     * @param  string  $name
-     * @param  string|null  $description
-     */
     public function __construct(
         int $id,
         ?int $parentId,
@@ -48,6 +44,7 @@ class CategoryEntity
     public function setId(int $id): CategoryEntity
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -59,6 +56,7 @@ class CategoryEntity
     public function setParentId(?int $parentId): CategoryEntity
     {
         $this->parentId = $parentId;
+
         return $this;
     }
 
@@ -70,6 +68,7 @@ class CategoryEntity
     public function setName(string $name): CategoryEntity
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -81,7 +80,7 @@ class CategoryEntity
     public function setDescription(?string $description): CategoryEntity
     {
         $this->description = $description;
+
         return $this;
     }
-
 }

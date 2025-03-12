@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 1:27 AM
  */
 
@@ -15,24 +20,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: DoctrineCategoryRepository::class)]
 #[ORM\Table(name: 'categories')]
 #[ORM\HasLifecycleCallbacks]
-class
-DoctrineCategoryEntity
+class DoctrineCategoryEntity
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups("category")]
+    #[Groups('category')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
-    #[Groups("category")]
+    #[Groups('category')]
     private ?self $parent_id = null;
 
     /**
@@ -42,20 +44,20 @@ DoctrineCategoryEntity
     private Collection $children;
 
     #[ORM\Column(length: 255)]
-    #[Groups("category")]
+    #[Groups('category')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups("category")]
+    #[Groups('category')]
     private ?string $description = null;
 
     #[ORM\Column]
-    #[Groups("category")]
-    private ?DateTimeImmutable $created_at = null;
+    #[Groups('category')]
+    private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
-    #[Groups("category")]
-    private ?DateTimeImmutable $updated_at = null;
+    #[Groups('category')]
+    private ?\DateTimeImmutable $updated_at = null;
 
     /**
      * @var Collection<int, Product>
@@ -73,11 +75,11 @@ DoctrineCategoryEntity
     #[ORM\PreUpdate]
     public function lifecycle(): void
     {
-        if ($this->created_at === null) {
-            $this->created_at = new DateTimeImmutable();
+        if (null === $this->created_at) {
+            $this->created_at = new \DateTimeImmutable();
         }
 
-        $this->updated_at = new DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -157,24 +159,24 @@ DoctrineCategoryEntity
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(DateTimeImmutable $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(DateTimeImmutable $updated_at): static
+    public function setUpdatedAt(\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
 
@@ -209,5 +211,4 @@ DoctrineCategoryEntity
 
         return $this;
     }
-
 }

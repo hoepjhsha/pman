@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 11:14 AM
  */
 
@@ -11,7 +16,6 @@ namespace App\Product\Application\DataTransferObjects;
 
 class CategoryDTO
 {
-
     private int $id;
 
     private ?int $parentId;
@@ -36,6 +40,7 @@ class CategoryDTO
     public function setId(int $id): CategoryDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -47,6 +52,7 @@ class CategoryDTO
     public function setParentId(?int $parentId): CategoryDTO
     {
         $this->parentId = $parentId;
+
         return $this;
     }
 
@@ -58,6 +64,7 @@ class CategoryDTO
     public function setName(string $name): CategoryDTO
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -69,7 +76,7 @@ class CategoryDTO
     public function setDescription(?string $description): CategoryDTO
     {
         $this->description = $description;
+
         return $this;
     }
-
 }

@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 11:18 AM
  */
 
@@ -11,7 +16,6 @@ namespace App\Product\Application\DataTransferObjects;
 
 class ProductDTO
 {
-
     private int $id;
 
     private int $categoryId;
@@ -24,14 +28,6 @@ class ProductDTO
 
     private int $stock;
 
-    /**
-     * @param  int  $id
-     * @param  int  $categoryId
-     * @param  string  $name
-     * @param  string|null  $description
-     * @param  int  $price
-     * @param  int  $stock
-     */
     public function __construct(int $id, int $categoryId, string $name, ?string $description, int $price, int $stock)
     {
         $this->id = $id;
@@ -50,6 +46,7 @@ class ProductDTO
     public function setId(int $id): ProductDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -61,6 +58,7 @@ class ProductDTO
     public function setCategoryId(int $categoryId): ProductDTO
     {
         $this->categoryId = $categoryId;
+
         return $this;
     }
 
@@ -72,6 +70,7 @@ class ProductDTO
     public function setName(string $name): ProductDTO
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -83,6 +82,7 @@ class ProductDTO
     public function setDescription(?string $description): ProductDTO
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -94,6 +94,7 @@ class ProductDTO
     public function setPrice(int $price): ProductDTO
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -105,7 +106,7 @@ class ProductDTO
     public function setStock(int $stock): ProductDTO
     {
         $this->stock = $stock;
+
         return $this;
     }
-
 }

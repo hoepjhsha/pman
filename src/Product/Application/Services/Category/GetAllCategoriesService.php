@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 10:18 AM
  */
 
@@ -14,7 +19,6 @@ use App\Product\Domain\Services\Category\GetAllCategoriesServiceInterface;
 
 class GetAllCategoriesService implements GetAllCategoriesServiceInterface
 {
-
     private CategoryRepositoryInterface $categoryRepository;
 
     public function __construct(CategoryRepositoryInterface $categoryRepository)
@@ -22,9 +26,8 @@ class GetAllCategoriesService implements GetAllCategoriesServiceInterface
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function execute(): array|null
+    public function execute(): ?array
     {
         return $this->categoryRepository->findAll();
     }
-
 }

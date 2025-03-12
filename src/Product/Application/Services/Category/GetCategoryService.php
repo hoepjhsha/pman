@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 10:20 AM
  */
 
@@ -14,7 +19,6 @@ use App\Product\Domain\Services\Category\GetCategoryServiceInterface;
 
 class GetCategoryService implements GetCategoryServiceInterface
 {
-
     private CategoryRepositoryInterface $categoryRepository;
 
     public function __construct(CategoryRepositoryInterface $categoryRepository)
@@ -26,5 +30,4 @@ class GetCategoryService implements GetCategoryServiceInterface
     {
         return $this->categoryRepository->findById($id);
     }
-
 }

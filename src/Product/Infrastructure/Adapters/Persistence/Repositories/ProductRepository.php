@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 9:08 AM
  */
 
@@ -14,11 +19,9 @@ use App\Product\Domain\Repositories\ProductRepositoryInterface;
 use App\Product\Infrastructure\Adapters\Persistence\Doctrine\Entities\DoctrineCategoryEntity;
 use App\Product\Infrastructure\Adapters\Persistence\Doctrine\Entities\DoctrineProductEntity;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-
     private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -26,7 +29,7 @@ class ProductRepository implements ProductRepositoryInterface
         $this->em = $em;
     }
 
-    public function findAll(): array|null
+    public function findAll(): ?array
     {
         return $this->em->getRepository(DoctrineProductEntity::class)->findAll();
     }
@@ -63,8 +66,9 @@ class ProductRepository implements ProductRepositoryInterface
             $this->em->commit();
 
             return true;
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->em->rollback();
+
             return false;
         }
     }
@@ -76,7 +80,7 @@ class ProductRepository implements ProductRepositoryInterface
 
             $doctrineProduct = $this->em->getRepository(DoctrineProductEntity::class)->find($id);
 
-            if ($doctrineProduct === null) {
+            if (null === $doctrineProduct) {
                 return false;
             }
 
@@ -85,10 +89,10 @@ class ProductRepository implements ProductRepositoryInterface
             $this->em->commit();
 
             return true;
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->em->rollback();
+
             return false;
         }
     }
-
 }

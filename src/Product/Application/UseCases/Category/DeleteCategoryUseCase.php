@@ -1,22 +1,25 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 11:28 AM
  */
 
 namespace App\Product\Application\UseCases\Category;
 
 use App\Product\Domain\Services\Category\DeleteCategoryServiceInterface;
-use Exception;
 
 readonly class DeleteCategoryUseCase
 {
-
     public function __construct(
-        private DeleteCategoryServiceInterface $deleteCategoryService
+        private DeleteCategoryServiceInterface $deleteCategoryService,
     ) {
     }
 
@@ -25,21 +28,20 @@ readonly class DeleteCategoryUseCase
         try {
             if ($this->deleteCategoryService->execute($id)) {
                 return [
-                    'status'  => 'success',
+                    'status' => 'success',
                     'message' => 'Delete category successful.',
                 ];
             }
 
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => 'Delete category successful.',
             ];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => 'An error occurred when delete category. '.$e->getMessage(),
             ];
         }
     }
-
 }

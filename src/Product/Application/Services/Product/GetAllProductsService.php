@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 10:24 AM
  */
 
@@ -14,7 +19,6 @@ use App\Product\Domain\Services\Product\GetAllProductsServiceInterface;
 
 class GetAllProductsService implements GetAllProductsServiceInterface
 {
-
     private ProductRepositoryInterface $productRepository;
 
     public function __construct(ProductRepositoryInterface $productRepository)
@@ -22,9 +26,8 @@ class GetAllProductsService implements GetAllProductsServiceInterface
         $this->productRepository = $productRepository;
     }
 
-    public function execute(): array|null
+    public function execute(): ?array
     {
         return $this->productRepository->findAll();
     }
-
 }

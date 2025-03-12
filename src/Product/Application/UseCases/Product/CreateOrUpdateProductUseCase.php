@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 11:40 AM
  */
 
@@ -12,13 +17,11 @@ namespace App\Product\Application\UseCases\Product;
 use App\Product\Application\DataTransferObjects\ProductDTO;
 use App\Product\Domain\Entities\ProductEntity;
 use App\Product\Domain\Services\Product\CreateOrUpdateProductServiceInterface;
-use Exception;
 
 readonly class CreateOrUpdateProductUseCase
 {
-
     public function __construct(
-        private CreateOrUpdateProductServiceInterface $createOrUpdateProductService
+        private CreateOrUpdateProductServiceInterface $createOrUpdateProductService,
     ) {
     }
 
@@ -35,21 +38,20 @@ readonly class CreateOrUpdateProductUseCase
             );
             if ($this->createOrUpdateProductService->execute($entity)) {
                 return [
-                    'status'  => 'success',
+                    'status' => 'success',
                     'message' => $isUpdate ? 'Updated product successful.' : 'Created product successful.',
                 ];
             }
 
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => $isUpdate ? 'Updated product failed.' : 'Created product failed.',
             ];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => 'An error occurred when '.($isUpdate ? 'update' : 'create').' product. '.$e->getMessage(),
             ];
         }
     }
-
 }

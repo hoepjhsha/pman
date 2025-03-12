@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 10:42 AM
  */
 
@@ -14,7 +19,6 @@ use App\Product\Domain\Services\Product\GetProductServiceInterface;
 
 class GetProductService implements GetProductServiceInterface
 {
-
     private ProductRepositoryInterface $productRepository;
 
     public function __construct(ProductRepositoryInterface $productRepository)
@@ -26,5 +30,4 @@ class GetProductService implements GetProductServiceInterface
     {
         return $this->productRepository->findById($id);
     }
-
 }

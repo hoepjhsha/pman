@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 11:11 AM
  */
 
@@ -12,13 +17,11 @@ namespace App\Product\Application\UseCases\Category;
 use App\Product\Application\DataTransferObjects\CategoryDTO;
 use App\Product\Domain\Entities\CategoryEntity;
 use App\Product\Domain\Services\Category\CreateOrUpdateCategoryServiceInterface;
-use Exception;
 
 readonly class CreateOrUpdateCategoryUseCase
 {
-
     public function __construct(
-        private CreateOrUpdateCategoryServiceInterface $createOrUpdateCategoryService
+        private CreateOrUpdateCategoryServiceInterface $createOrUpdateCategoryService,
     ) {
     }
 
@@ -30,21 +33,20 @@ readonly class CreateOrUpdateCategoryUseCase
             );
             if ($this->createOrUpdateCategoryService->execute($entity)) {
                 return [
-                    'status'  => 'success',
+                    'status' => 'success',
                     'message' => $isUpdate ? 'Updated category successful.' : 'Created category successful.',
                 ];
             }
 
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => $isUpdate ? 'Updated category failed.' : 'Created category failed.',
             ];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return [
-                'status'  => 'failed',
+                'status' => 'failed',
                 'message' => 'An error occurred when '.($isUpdate ? 'update' : 'create').' category. '.$e->getMessage(),
             ];
         }
     }
-
 }

@@ -16,14 +16,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[Route('/category', name: 'category-')]
 class CategoryController extends AbstractController
 {
-
     public function __construct(
         private readonly SerializerInterface $serializer,
 
         private readonly GetAllCategoriesUseCase $getAllCategoriesUseCase,
         private readonly GetCategoryUseCase $getCategoryUseCase,
         private readonly CreateOrUpdateCategoryUseCase $createOrUpdateCategoryUseCase,
-        private readonly DeleteCategoryUseCase $deleteCategoryUseCase
+        private readonly DeleteCategoryUseCase $deleteCategoryUseCase,
     ) {
     }
 
@@ -34,6 +33,7 @@ class CategoryController extends AbstractController
     public function index(): JsonResponse
     {
         $data = $this->getAllCategoriesUseCase->handle();
+
         return $this->serialize($data);
     }
 
@@ -43,13 +43,11 @@ class CategoryController extends AbstractController
     public function show(int $id): JsonResponse
     {
         $data = $this->getCategoryUseCase->handle($id);
+
         return $this->serialize($data);
     }
 
     /**
-     * @param  mixed  $data
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      * @throws \JsonException
      */
     private function serialize(mixed $data): JsonResponse
@@ -58,17 +56,16 @@ class CategoryController extends AbstractController
 
         $decodedData = json_decode($serializedData, true, 512, JSON_THROW_ON_ERROR);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             return new JsonResponse(['error' => 'Invalid JSON data'], 500);
         }
 
         $prettyJson = json_encode($decodedData, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             return new JsonResponse(['error' => 'Error encoding JSON'], 500);
         }
 
         return new JsonResponse($prettyJson, 200, [], true);
     }
-
 }

@@ -1,19 +1,21 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 8:15 AM
  */
 
 namespace App\Product\Domain\Entities;
 
-use DateTimeImmutable;
-
 class ProductEntity
 {
-
     private int $id;
 
     private int $categoryId;
@@ -26,14 +28,6 @@ class ProductEntity
 
     private int $stock;
 
-    /**
-     * @param  int  $id
-     * @param  int  $categoryId
-     * @param  string  $name
-     * @param  string|null  $description
-     * @param  int  $price
-     * @param  int  $stock
-     */
     public function __construct(
         int $id,
         int $categoryId,
@@ -58,6 +52,7 @@ class ProductEntity
     public function setId(int $id): ProductEntity
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -69,6 +64,7 @@ class ProductEntity
     public function setCategoryId(int $categoryId): ProductEntity
     {
         $this->categoryId = $categoryId;
+
         return $this;
     }
 
@@ -80,6 +76,7 @@ class ProductEntity
     public function setName(string $name): ProductEntity
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -91,6 +88,7 @@ class ProductEntity
     public function setDescription(?string $description): ProductEntity
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -102,6 +100,7 @@ class ProductEntity
     public function setPrice(int $price): ProductEntity
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -113,7 +112,7 @@ class ProductEntity
     public function setStock(int $stock): ProductEntity
     {
         $this->stock = $stock;
+
         return $this;
     }
-
 }

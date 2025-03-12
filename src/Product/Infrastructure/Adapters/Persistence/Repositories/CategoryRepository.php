@@ -1,9 +1,14 @@
 <?php
+
 /**
  * @project pman
+ *
  * @author hoep
+ *
  * @email hiepnguyen3624@gmail.com
+ *
  * @date 2025-03-12
+ *
  * @time 8:31 AM
  */
 
@@ -13,11 +18,9 @@ use App\Product\Domain\Entities\CategoryEntity;
 use App\Product\Domain\Repositories\CategoryRepositoryInterface;
 use App\Product\Infrastructure\Adapters\Persistence\Doctrine\Entities\DoctrineCategoryEntity;
 use Doctrine\Persistence\ManagerRegistry;
-use Exception;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-
     private $em;
 
     public function __construct(ManagerRegistry $m)
@@ -25,7 +28,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         $this->em = $m->getManager('product');
     }
 
-    public function findAll(): array|null
+    public function findAll(): ?array
     {
         return $this->em->getRepository(DoctrineCategoryEntity::class)->findAll();
     }
@@ -55,8 +58,9 @@ class CategoryRepository implements CategoryRepositoryInterface
             $this->em->commit();
 
             return true;
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->em->rollback();
+
             return false;
         }
     }
@@ -68,7 +72,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
             $doctrineCategory = $this->em->getRepository(DoctrineCategoryEntity::class)->find($id);
 
-            if ($doctrineCategory === null) {
+            if (null === $doctrineCategory) {
                 return false;
             }
 
@@ -77,13 +81,14 @@ class CategoryRepository implements CategoryRepositoryInterface
             $this->em->commit();
 
             return true;
-        } catch (Exception) {
+        } catch (\Exception) {
             $this->em->rollback();
+
             return false;
         }
     }
 
-    public function findChildren(int $id): array|null
+    public function findChildren(int $id): ?array
     {
         return $this->em->getRepository(DoctrineCategoryEntity::class)->find($id)?->getChildren();
     }
@@ -93,9 +98,8 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $this->em->getRepository(DoctrineCategoryEntity::class)->find($id)?->getParentId();
     }
 
-    public function findAllProductsById(int $id): array|null
+    public function findAllProductsById(int $id): ?array
     {
         return $this->em->getRepository(DoctrineCategoryEntity::class)->find($id)?->getProducts();
     }
-
 }
