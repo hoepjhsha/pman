@@ -25,10 +25,4 @@ jobs:
                 run: composer install --no-progress --no-interaction --prefer-dist
 
             -   name: Run PHP-CS-Fixer
-                run: |
-                    ./vendor/bin/php-cs-fixer fix src
-                    git config --global user.name "github-actions[bot]"
-                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
-                    git add .
-                    git commit -m "Apply PHP-CS-Fixer formatting" || echo "No changes to commit"
-                    git push
+                run: ./vendor/bin/php-cs-fixer fix src --dry-run --diff
